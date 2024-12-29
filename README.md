@@ -58,7 +58,8 @@ A robust mobile security package designed to enhance application resilience agai
 To integrate this package into your project:
 
 ```bash
-flutter pub add security_analysis_package
+flutter pub add mobile_garuda
+```
 
 ## Usage
 
@@ -66,26 +67,28 @@ Here’s an example of how to initialize and use the package in your app:
 
 ### Flutter Example
 
-```dart
-// Import the Security Analysis package
+Import the Security Analysis package
+```bash
 import 'package:security_analysis/security_analysis.dart';
+```
 
-// Initialize the Security Analysis package
-  final _mobileGarudaPlugin = MobileGaruda();
+Initialize the Security Analysis package
+```bash
+final _mobileGarudaPlugin = MobileGaruda();
+```
 
 ## Compatibility
 
-| Feature                           | Android | iOS |
-|-----------------------------------|---------|-----|
-| Root Detection                    | ✅      | ❌  |
-| Emulator Detection                | ✅      | ❌  |
-| Debugger Detection                | ✅      | ❌  |
-| Malicious Root App Detection      | ✅      | ❌  |
-| ADB Debugging Detection           | ✅      | ❌  |
-| Developer Mode Detection          | ✅      | ❌  |
-| VPN Detection                     | ✅      | ✅  |
-| Screen Capturing Prevention       | ✅      | ❌  |
-| Copy-Paste Prevention             | ✅      | ❌  |
-| Screen Sharing Prevention         | ✅      | ❌  |
-| App Cloning/Second Space Detection| ✅      | ❌  |
+| Feature                             | Android | iOS  | 
+| ----------------------------------- | :-----: | :--: | 
+| Root Detection                      |   ✅    |   ❌  | 
+| Emulator Detection                  |   ✅    |   ❌  | 
+| Debugger Detection                  |   ✅    |   ❌  | 
+| Malicious Root App Detection        |   ✅    |   ❌  | 
+| ADB Debugging Detection             |   ✅    |   ❌  | 
+| Developer Mode Detection            |   ✅    |   ❌  | 
+| VPN Detection                       |   ✅    |   ✅  | 
+| Screen Capturing Prevention         |   ✅    |   ❌  | 
+| Copy-Paste Prevention               |   ✅    |   ❌  | 
+| App Cloning/Second Space Detection  |   ✅    |   ❌  | 
 
