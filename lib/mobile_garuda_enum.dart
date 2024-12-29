@@ -1,0 +1,4 @@
+enum VpnConnectionState {
+  connected,
+  disconnected
+}

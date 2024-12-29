@@ -1,0 +1,28 @@
+name: mobile_garuda
+description: "A Flutter plugin for comprehensive device and OS integrity checks to enhance mobile app security."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  connectivity_plus: ^6.1.0
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.mobileapp.garuda.mobile_garuda
+        pluginClass: MobileGarudaPlugin
+      ios:
+        pluginClass: MobileGarudaPlugin
