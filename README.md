@@ -59,3 +59,33 @@ To integrate this package into your project:
 
 ```bash
 flutter pub add security_analysis_package
+
+## Usage
+
+Here’s an example of how to initialize and use the package in your app:
+
+### Flutter Example
+
+```dart
+// Import the Security Analysis package
+import 'package:security_analysis/security_analysis.dart';
+
+// Initialize the Security Analysis package
+  final _mobileGarudaPlugin = MobileGaruda();
+
+## Compatibility
+
+| Feature                           | Android | iOS |
+|-----------------------------------|---------|-----|
+| Root Detection                    | ✅      | ❌  |
+| Emulator Detection                | ✅      | ❌  |
+| Debugger Detection                | ✅      | ❌  |
+| Malicious Root App Detection      | ✅      | ❌  |
+| ADB Debugging Detection           | ✅      | ❌  |
+| Developer Mode Detection          | ✅      | ❌  |
+| VPN Detection                     | ✅      | ✅  |
+| Screen Capturing Prevention       | ✅      | ❌  |
+| Copy-Paste Prevention             | ✅      | ❌  |
+| Screen Sharing Prevention         | ✅      | ❌  |
+| App Cloning/Second Space Detection| ✅      | ❌  |
+
