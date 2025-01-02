@@ -89,6 +89,6 @@ final _mobileGarudaPlugin = MobileGaruda();
 | Developer Mode Detection            |   ✅    |   ❌  | 
 | VPN Detection                       |   ✅    |   ✅  | 
 | Screen Capturing Prevention         |   ✅    |   ❌  | 
-| Copy-Paste Prevention               |   ✅    |   ❌  | 
+| Copy-Paste Prevention               |   ✅    |   ✅  | 
 | App Cloning/Second Space Detection  |   ✅    |   ❌  | 
 
