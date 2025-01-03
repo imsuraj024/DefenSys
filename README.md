@@ -88,7 +88,7 @@ final _mobileGarudaPlugin = MobileGaruda();
 | ADB Debugging Detection             |   ✅    |   ❌  | 
 | Developer Mode Detection            |   ✅    |   ❌  | 
 | VPN Detection                       |   ✅    |   ✅  | 
-| Screen Capturing Prevention         |   ✅    |   ❌  | 
+| Screen Capturing Prevention         |   ✅    |   ✅  | 
 | Copy-Paste Prevention               |   ✅    |   ✅  | 
 | App Cloning/Second Space Detection  |   ✅    |   ❌  | 
 

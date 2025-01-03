@@ -154,56 +154,39 @@ class _MyAppState extends State<MyApp> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _mobileGarudaPlugin.enableScreenshot().then(
-                          (value) {
-                            setState(() {
-                              _copyPasteEnable = true;
-                            });
-                          },
-                        );
+                        setState(() {
+                          _copyPasteEnable = true;
+                        });
                       },
                       child: const Text('Enable Copy paste'),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _mobileGarudaPlugin.enableScreenshot().then(
-                          (value) {
-                            setState(() {
-                              _copyPasteEnable = false;
-                            });
-                          },
-                        );
+                        setState(() {
+                          _copyPasteEnable = false;
+                        });
                       },
                       child: const Text('Disable Copy paste'),
                     ),
                   ],
                 ),
-                Row(children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      _mobileGarudaPlugin.enableScreenshot().then(
-                        (value) {
-                          setState(() {
-                            _isScreenshotDisabled = false;
-                          });
-                        },
-                      );
-                    },
-                    child: const Text('Enable Screenshot'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _mobileGarudaPlugin.disableScreenshot().then(
-                        (value) {
-                          setState(() {
-                            _isScreenshotDisabled = true;
-                          });
-                        },
-                      );
-                    },
-                    child: const Text('Disable Screenshot'),
-                  )
-                ])
+                Row(
+                  children: [
+                    const Text("Enable Screenshot"),
+                    Switch.adaptive(
+                        value: !_isScreenshotDisabled,
+                        onChanged: (value) {
+                          _isScreenshotDisabled = !_isScreenshotDisabled;
+
+                          if (_isScreenshotDisabled) {
+                            _mobileGarudaPlugin.disableScreenshot();
+                          } else {
+                            _mobileGarudaPlugin.enableScreenshot();
+                          }
+                          setState(() {});
+                        }),
+                  ],
+                ),
               ],
             ),
           ),

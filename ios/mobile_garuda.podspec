@@ -16,6 +16,7 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'DTTJailbreakDetection', '0.4.0'
+  s.dependency 'ScreenProtectorKit', '1.3.1'
   s.ios.deployment_target = '12.0'
   s.platform = :ios, '12.0'
 
