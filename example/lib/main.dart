@@ -17,16 +17,15 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  bool _isDeviceRooted = true,
-      _isDeviceSafe = false,
+  bool _isDeviceSafe = false,
       _isDebuggingModeEnable = false,
       _isDeveloperModeEnabled = false,
-      _isEmulator = false,
       _isVpnEnabled = false,
       _isScreenshotDisabled = false,
       _isDebuggerAttached = false,
       _copyPasteEnable = false,
       _isAppCloned = false;
+  bool? _isDeviceRooted, _isEmulator;
 
   final _mobileGarudaPlugin = MobileGaruda();
 
@@ -39,25 +38,23 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String platformVersion;
-    bool isDeviceRooted,
-        isDeviceSafe,
+    bool isDeviceSafe,
         isDebuggingModeEnable,
         isDeveloperModeEnabled,
-        isEmulator,
         isVpnEnabled;
-
+    bool? isDeviceRooted, isEmulator;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
       platformVersion = await _mobileGarudaPlugin.getPlatformVersion() ??
           'Unknown platform version';
-      isDeviceRooted = await _mobileGarudaPlugin.isDeviceRooted() ?? false;
+      isDeviceRooted = await _mobileGarudaPlugin.isDeviceRooted();
       isDeviceSafe = await _mobileGarudaPlugin.isDeviceSafe() ?? false;
       isDebuggingModeEnable =
           await _mobileGarudaPlugin.isDebuggingModeEnable() ?? false;
       isDeveloperModeEnabled =
           await _mobileGarudaPlugin.isDeveloperModeEnabled() ?? false;
-      isEmulator = await _mobileGarudaPlugin.isEmulator() ?? false;
+      isEmulator = await _mobileGarudaPlugin.isEmulator();
       isVpnEnabled = await _mobileGarudaPlugin.isVpnEnabled() ?? false;
       _isDebuggerAttached =
           await _mobileGarudaPlugin.isDebuggerAttached() ?? false;
@@ -91,6 +88,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
@@ -110,10 +108,10 @@ class _MyAppState extends State<MyApp> {
                   textAlign: TextAlign.center,
                 ),
                 const Divider(),
-                Text('Is Device Rooted: $_isDeviceRooted'),
+                Text('Is Device Rooted: ${_isDeviceRooted ?? "Unknown"}'),
                 Text('Is Debugging Mode Enable: $_isDebuggingModeEnable'),
                 Text('Is Developer Mode Enabled: $_isDeveloperModeEnabled'),
-                Text('Is Emulator: $_isEmulator'),
+                Text('Is Emulator: ${_isEmulator ?? "Unknown"}'),
                 Text('Is VPN Enabled: $_isVpnEnabled'),
                 Text('Is Screenshot Disabled: $_isScreenshotDisabled'),
                 Text('Is Debugger Attached: $_isDebuggerAttached'),
@@ -156,56 +154,39 @@ class _MyAppState extends State<MyApp> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _mobileGarudaPlugin.enableScreenshot().then(
-                          (value) {
-                            setState(() {
-                              _copyPasteEnable = true;
-                            });
-                          },
-                        );
+                        setState(() {
+                          _copyPasteEnable = true;
+                        });
                       },
                       child: const Text('Enable Copy paste'),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _mobileGarudaPlugin.enableScreenshot().then(
-                          (value) {
-                            setState(() {
-                              _copyPasteEnable = false;
-                            });
-                          },
-                        );
+                        setState(() {
+                          _copyPasteEnable = false;
+                        });
                       },
                       child: const Text('Disable Copy paste'),
                     ),
                   ],
                 ),
-                Row(children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      _mobileGarudaPlugin.enableScreenshot().then(
-                        (value) {
-                          setState(() {
-                            _isScreenshotDisabled = false;
-                          });
-                        },
-                      );
-                    },
-                    child: const Text('Enable Screenshot'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _mobileGarudaPlugin.disableScreenshot().then(
-                        (value) {
-                          setState(() {
-                            _isScreenshotDisabled = true;
-                          });
-                        },
-                      );
-                    },
-                    child: const Text('Disable Screenshot'),
-                  )
-                ])
+                Row(
+                  children: [
+                    const Text("Enable Screenshot"),
+                    Switch.adaptive(
+                        value: !_isScreenshotDisabled,
+                        onChanged: (value) {
+                          _isScreenshotDisabled = !_isScreenshotDisabled;
+
+                          if (_isScreenshotDisabled) {
+                            _mobileGarudaPlugin.disableScreenshot();
+                          } else {
+                            _mobileGarudaPlugin.enableScreenshot();
+                          }
+                          setState(() {});
+                        }),
+                  ],
+                ),
               ],
             ),
           ),

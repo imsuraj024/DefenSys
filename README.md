@@ -81,14 +81,16 @@ final _mobileGarudaPlugin = MobileGaruda();
 
 | Feature                             | Android | iOS  | 
 | ----------------------------------- | :-----: | :--: | 
-| Root Detection                      |   ✅    |   ❌  | 
+| Root Detection                      |   ✅    |   ✅  | 
 | Emulator Detection                  |   ✅    |   ❌  | 
-| Debugger Detection                  |   ✅    |   ❌  | 
+| Debugger Detection                  |   ✅    |   ✅  | 
 | Malicious Root App Detection        |   ✅    |   ❌  | 
 | ADB Debugging Detection             |   ✅    |   ❌  | 
 | Developer Mode Detection            |   ✅    |   ❌  | 
 | VPN Detection                       |   ✅    |   ✅  | 
-| Screen Capturing Prevention         |   ✅    |   ❌  | 
-| Copy-Paste Prevention               |   ✅    |   ❌  | 
+| Screen Capturing Prevention         |   ✅    |   ✅  | 
+| Screen Share Prevention             |   ✅    |   ✅  | 
+| Copy-Paste Prevention               |   ✅    |   ✅  | 
 | App Cloning/Second Space Detection  |   ✅    |   ❌  | 
+
 
