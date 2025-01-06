@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Mobile Gradua Plugin'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -118,9 +118,25 @@ class _MyAppState extends State<MyApp> {
                 Text('Is App Cloned: $_isAppCloned'),
                 Text('Is Copy paste Enabled: $_copyPasteEnable'),
                 const Divider(),
+                ListTile(
+                  title: const Text("Copy Paste"),
+                  subtitle: _copyPasteEnable
+                      ? const Text("Enabled")
+                      : const Text("Disabled"),
+                  trailing: Switch.adaptive(
+                      value: _copyPasteEnable,
+                      onChanged: (value) {
+                        _copyPasteEnable = !_copyPasteEnable;
+                        setState(() {});
+                      }),
+                ),
                 SizedBox(
-                  height: 100,
+                  height: 80,
                   child: TextField(
+                    decoration: const InputDecoration(
+                      label: Text("TextField"),
+                      border: OutlineInputBorder(),
+                    ),
                     enableInteractiveSelection: _copyPasteEnable,
                     contextMenuBuilder: _copyPasteEnable
                         ? (context, editableTextState) {
@@ -135,8 +151,12 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 80,
                   child: TextFormField(
+                    decoration: const InputDecoration(
+                      label: Text("TextFormField"),
+                      border: OutlineInputBorder(),
+                    ),
                     enableInteractiveSelection: _copyPasteEnable,
                     contextMenuBuilder: _copyPasteEnable
                         ? (context, editableTextState) {
@@ -150,42 +170,22 @@ class _MyAppState extends State<MyApp> {
                         : null,
                   ),
                 ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _copyPasteEnable = true;
-                        });
-                      },
-                      child: const Text('Enable Copy paste'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _copyPasteEnable = false;
-                        });
-                      },
-                      child: const Text('Disable Copy paste'),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text("Enable Screenshot"),
-                    Switch.adaptive(
-                        value: !_isScreenshotDisabled,
-                        onChanged: (value) {
-                          _isScreenshotDisabled = !_isScreenshotDisabled;
-
-                          if (_isScreenshotDisabled) {
-                            _mobileGarudaPlugin.disableScreenshot();
-                          } else {
-                            _mobileGarudaPlugin.enableScreenshot();
-                          }
-                          setState(() {});
-                        }),
-                  ],
+                ListTile(
+                  title: const Text("Screen Capturing and Screensharing"),
+                  subtitle: !_isScreenshotDisabled
+                      ? const Text("Allowed")
+                      : const Text("Restricted"),
+                  trailing: Switch.adaptive(
+                      value: !_isScreenshotDisabled,
+                      onChanged: (value) {
+                        if (_isScreenshotDisabled) {
+                          _mobileGarudaPlugin.enableScreenshot();
+                        } else {
+                          _mobileGarudaPlugin.disableScreenshot();
+                        }
+                        _isScreenshotDisabled = !_isScreenshotDisabled;
+                        setState(() {});
+                      }),
                 ),
               ],
             ),
