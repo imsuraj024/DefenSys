@@ -58,7 +58,9 @@ class _MyAppState extends State<MyApp> {
       isVpnEnabled = await _mobileGarudaPlugin.isVpnEnabled() ?? false;
       _isDebuggerAttached =
           await _mobileGarudaPlugin.isDebuggerAttached() ?? false;
-      _isAppCloned = await _mobileGarudaPlugin.isAppCloned() ?? false;
+      _isAppCloned = await _mobileGarudaPlugin.isAppCloned(
+              applicationID: "com.mobileapp.garuda.mobile_garuda") ??
+          false;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
       isDeviceRooted = false;

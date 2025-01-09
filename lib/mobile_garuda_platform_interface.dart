@@ -65,7 +65,7 @@ abstract class MobileGarudaPlatform extends PlatformInterface {
     throw UnimplementedError('isDebuggerAttached() has not been implemented.');
   }
 
-  Future<bool?> isAppCloned() {
+  Future<bool?> isAppCloned(String applicationID) {
     throw UnimplementedError('isAppCloned() has not been implemented.');
   }
 }

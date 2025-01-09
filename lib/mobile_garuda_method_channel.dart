@@ -95,11 +95,9 @@ class MethodChannelMobileGaruda extends MobileGarudaPlatform {
   }
 
   @override
-  Future<bool?> isAppCloned() async {
-    //TODO take applicationID as a parameter
-
+  Future<bool?> isAppCloned(String applicationID) async {
     final rooted = await methodChannel.invokeMethod<bool>('isAppCloned', {
-      "applicationID": "com.mobileapp.garuda.mobile_garuda",
+      "applicationID": applicationID,
     });
     return rooted;
   }

@@ -65,7 +65,7 @@ class MockMobileGarudaPlatform
   }
 
   @override
-  Future<bool?> isAppCloned() {
+  Future<bool?> isAppCloned(String applicationID) {
     // TODO: implement isAppCloned
     throw UnimplementedError();
   }
