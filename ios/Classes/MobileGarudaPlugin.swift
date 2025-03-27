@@ -21,7 +21,7 @@ public class MobileGarudaPlugin: NSObject, FlutterPlugin {
         case "isDeviceRooted":
             result(isJailBroken())
         case "isDeviceSafe":
-            result(false)
+            result(isDeviceSafe())
         case "isDebuggingModeEnable":
             result(false)
         case "isDeveloperModeEnabled":
@@ -33,7 +33,7 @@ public class MobileGarudaPlugin: NSObject, FlutterPlugin {
             result(true)
         case "disableScreenshot":
             screenProtectorKit.enabledPreventScreenshot()
-            result(true)
+            result(true) // no need to return anything
         case "isDebuggerAttached":
             result(isDebuggerAttached)
         case "isAppCloned":
@@ -41,6 +41,13 @@ public class MobileGarudaPlugin: NSObject, FlutterPlugin {
         default:
             result(FlutterMethodNotImplemented)
         }
+    }
+    
+    private func isDeviceSafe() -> Bool {
+        return !isJailBroken()
+                && !isDebuggerAttached
+                && !isSimulator()
+                // !isDeveloperModeEnabled()
     }
     
     private func isSimulator() -> Bool {

@@ -45,7 +45,7 @@ class MobileGarudaPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${Build.VERSION.RELEASE}")
     } else if (call.method == "isDeviceSafe") {
-      result.success(isDeviceSafe())
+      result.success(isDeviceSafe(call))
     } else if (call.method == "isDeviceRooted") {
       result.success(RootCheck(context).isRooted())
     } else if (call.method == "isDeveloperModeEnabled") {
@@ -67,9 +67,13 @@ class MobileGarudaPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     }
   }
 
-    fun isDeviceSafe(): Boolean {
-        return RootCheck(context).isRooted() && isDeveloperModeEnabled()
-                && DebuggingModeCheck(context).isDebuggingModeEnabled()
+    fun isDeviceSafe(call: MethodCall): Boolean {
+        return !RootCheck(context).isRooted() &&
+                !isDeveloperModeEnabled() &&
+                !DebuggingModeCheck(context).isDebuggingModeEnabled() &&
+                !EmulatorCheck().isEmulator() &&
+                !DebuggerProtection().isDebuggerAttached() &&
+                !AppCloneChecker(call, activity).appCloneChecker()
     }
 
     fun isDeveloperModeEnabled(): Boolean {
